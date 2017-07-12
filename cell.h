@@ -17,6 +17,7 @@ public:
                    const QStyleOptionGraphicsItem * option,
                    QWidget * widget);
     bool alive;
+    bool border;
     int x, y;
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

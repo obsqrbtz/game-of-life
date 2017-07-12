@@ -7,6 +7,7 @@ namespace gui{
         for (int y = 0; y <= 490; y+=10){
             for(int x = 0; x <= 490; x+=10){
                 cell[i][j] = new Cell;
+                if (i == 0 || i == 49 || j == 49 || j == 0) cell[i][j]->border = true;
                 cell[i][j]->setCoordinates(x,y);
                 scene->addItem(cell[i][j]);
                 i++;
@@ -20,14 +21,14 @@ namespace gui{
         timerActive = false;
     }
     void grid::timerEvent(QTimerEvent *){
-        for(int i = 0; i < 50; i++){
-            for(int j = 0; j < 50; j++){
+        for(int i = 1; i < 49; i++){
+            for(int j = 1; j < 49; j++){
                 gGrid.cell[i][j] = cell[i][j]->alive;
             }
         }
         game::grid state = gGrid.calculateNewState(gGrid);
-        for (int i = 0; i < 50; i++){
-            for(int j = 0; j < 50; j++){
+        for (int i = 1; i < 49; i++){
+            for(int j = 1; j < 49; j++){
                 cell[i][j]->alive = state.cell[i][j];
                 cell[i][j]->update();
             }
@@ -36,7 +37,7 @@ namespace gui{
     }
     void grid::start(){
         if(!timerActive){
-            timerID = startTimer(5);
+            timerID = startTimer(100);
             timerActive = true;
         }
     }
