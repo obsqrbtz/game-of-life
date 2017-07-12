@@ -19,6 +19,10 @@ namespace gui{
         setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     }
     void grid::timerEvent(QTimerEvent *){
+/*
+* Change random cell's state.
+* Grid test.
+*/
         int i = rand()%9;
         int j = rand()%9;
         cell[i][j]->alive = !cell[i][j]->alive;

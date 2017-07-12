@@ -10,5 +10,4 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     layout->addWidget(grid);
     layout->addWidget(startbtn);
     setLayout(layout);
-    //show();
 }
