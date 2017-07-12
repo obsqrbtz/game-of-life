@@ -13,7 +13,7 @@ void Cell::setCoordinates(int x_new, int y_new){
 }
 
 QRectF Cell::boundingRect() const{
-    return QRectF(x,y,10,10);
+    return QRectF(x,y,RECT_SIZE,RECT_SIZE);
 }
 void Cell::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {

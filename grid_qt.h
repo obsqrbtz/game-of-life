@@ -2,9 +2,11 @@
 #define GRID_QT_H
 
 #include "cell.h"
+#include "grid.h"
 #include <QPainter>
 #include <QGraphicsView>
 #include <QVBoxLayout>
+
 namespace gui{
     class grid : public QGraphicsView
     {
@@ -14,7 +16,8 @@ namespace gui{
     protected:
         void timerEvent(QTimerEvent*);
     private:
-        Cell *cell[10][10];
+        Cell *cell[50][50];
+        game::grid gGrid;
     };
 }
 #endif // GRID_QT_H

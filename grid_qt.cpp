@@ -4,8 +4,8 @@ namespace gui{
     {
         QGraphicsScene *scene = new QGraphicsScene;
         int i = 0, j = 0;
-        for (int y = 0; y <= 90; y+=10){
-            for(int x = 0; x <= 90; x+=10){
+        for (int y = 0; y <= 490; y+=10){
+            for(int x = 0; x <= 490; x+=10){
                 cell[i][j] = new Cell;
                 cell[i][j]->setCoordinates(x,y);
                 scene->addItem(cell[i][j]);
@@ -15,21 +15,25 @@ namespace gui{
             i = 0;
         }
         setScene(scene);
-        setSceneRect(0,0,100,100);
+        setSceneRect(0,0,500,500);
         setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     }
     void grid::timerEvent(QTimerEvent *){
-/*
-* Change random cell's state.
-* Grid test.
-*/
-        int i = rand()%9;
-        int j = rand()%9;
-        cell[i][j]->alive = !cell[i][j]->alive;
-        cell[i][j]->update();
+        for(int i = 0; i < 50; i++){
+            for(int j = 0; j < 50; j++){
+                gGrid.cell[i][j] = cell[i][j]->alive;
+            }
+        }
+        game::grid state = gGrid.calculateNewState(gGrid);
+        for (int i = 0; i < 50; i++){
+            for(int j = 0; j < 50; j++){
+                cell[i][j]->alive = state.cell[i][j];
+                cell[i][j]->update();
+            }
+        }
         update();
     }
     void grid::start(){
-        startTimer(1000);
+        startTimer(360);
     }
 }

@@ -7,8 +7,14 @@
 
 class MainWindow : public QWidget
 {
+    Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+private:
+    gui::grid *grid;
+    QPushButton *startbtn;
+private slots:
+    void handleButton();
 };
 
 #endif // MAINWINDOW_H
