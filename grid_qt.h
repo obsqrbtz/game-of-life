@@ -13,11 +13,14 @@ namespace gui{
     public:
         grid();
         void start();
+        void pause();
     protected:
         void timerEvent(QTimerEvent*);
     private:
         Cell *cell[50][50];
         game::grid gGrid;
+        int timerID;
+        bool timerActive;
     };
 }
 #endif // GRID_QT_H
