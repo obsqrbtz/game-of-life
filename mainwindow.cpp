@@ -9,13 +9,16 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     startbtn->setText("Start");
     pausebtn = new QPushButton;
     pausebtn->setText("Pause");
+    clearbtn = new QPushButton;
+    clearbtn->setText("Clear");
     connect(startbtn, SIGNAL(clicked()), this, SLOT(handleStartButton()));
     connect(pausebtn, SIGNAL(clicked()), this, SLOT(handlePauseButton()));
+    connect(clearbtn, SIGNAL(clicked()), this, SLOT(handleClearButton()));
     buttons->addWidget(startbtn);
     buttons->addWidget(pausebtn);
+    buttons->addWidget(clearbtn);
     layout->addWidget(grid);
     layout->addLayout(buttons);
-    //layout->addWidget(startbtn);
     setLayout(layout);
 }
 void MainWindow::handleStartButton(){
@@ -23,4 +26,7 @@ void MainWindow::handleStartButton(){
 }
 void MainWindow::handlePauseButton(){
     grid->pause();
+}
+void MainWindow::handleClearButton(){
+    grid->clear();
 }

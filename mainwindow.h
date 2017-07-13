@@ -14,9 +14,11 @@ private:
     gui::grid *grid;
     QPushButton *startbtn;
     QPushButton *pausebtn;
+    QPushButton *clearbtn;
 private slots:
     void handleStartButton();
     void handlePauseButton();
+    void handleClearButton();
 };
 
 #endif // MAINWINDOW_H

@@ -14,6 +14,7 @@ namespace gui{
         grid();
         void start();
         void pause();
+        void clear();
     protected:
         void timerEvent(QTimerEvent*);
     private:
