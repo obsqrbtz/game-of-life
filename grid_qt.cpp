@@ -29,6 +29,7 @@ namespace gui{
         for (int i = 1; i < 49; i++){
             for(int j = 1; j < 49; j++){
                 cell[i][j]->alive = state.cell[i][j];
+                if(cell[i][j]->alive && !cell[i][j]->wereAlive) cell[i][j]->wereAlive = true;
                 cell[i][j]->update();
             }
         }
@@ -49,6 +50,7 @@ namespace gui{
             for(int j = 1; j < 49; j++){
                 pause();
                 cell[i][j]->alive = false;
+                cell[i][j]->wereAlive = false;
                 cell[i][j]->update();
             }
         }

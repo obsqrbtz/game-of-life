@@ -17,6 +17,7 @@ public:
                    const QStyleOptionGraphicsItem * option,
                    QWidget * widget);
     bool alive;
+    bool wereAlive;
     bool border;
     int x, y;
 protected:

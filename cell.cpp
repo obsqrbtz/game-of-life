@@ -3,6 +3,7 @@
 Cell::Cell()
 {
     alive = false;
+    wereAlive = false;
     border = false;
     x = 0;
     y = 0;
@@ -19,14 +20,7 @@ QRectF Cell::boundingRect() const{
 void Cell::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     QRectF rect = boundingRect();
-    if(border){
-        QPen pen(Qt::gray, 1);
-        QBrush brush(Qt::gray);
-        painter->setPen(pen);
-        painter->setBrush(brush);
-        painter->drawRect(rect);
-    }
-    if(alive && !border)
+    if(alive)
     {
         QPen pen(Qt::gray, 1);
         QBrush brush(Qt::red);
@@ -36,9 +30,17 @@ void Cell::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     }
     else
     {
-        QPen pen(Qt::gray, 1);
-        painter->setPen(pen);
-        painter->drawRect(rect);
+        if (!wereAlive){
+            QPen pen(Qt::gray, 1);
+            painter->setPen(pen);
+            painter->drawRect(rect);
+        }else{
+            QPen pen(Qt::gray, 1);
+            QBrush brush(Qt::lightGray);
+            painter->setPen(pen);
+            painter->setBrush(brush);
+            painter->drawRect(rect);
+        }
     }
 }
 
