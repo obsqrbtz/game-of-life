@@ -22,6 +22,7 @@ private slots:
     void handleStartButton();
     void handlePauseButton();
     void handleClearButton();
+    void handleSetIntervalButton();
 };
 
 #endif // MAINWINDOW_H

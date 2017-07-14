@@ -12,15 +12,17 @@ namespace gui{
     {
     public:
         grid();
-        void start(int interval);
+        void start();
         void pause();
         void clear();
+        void setInterval(int interval);
     protected:
         void timerEvent(QTimerEvent*);
     private:
         Cell *cell[50][50];
         game::grid gGrid;
         int timerID;
+        int timerInterval;
         bool timerActive;
     };
 }

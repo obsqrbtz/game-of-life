@@ -19,6 +19,7 @@ namespace gui{
         setSceneRect(0,0,500,500);
         setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
         timerActive = false;
+        timerInterval = 100;
     }
     void grid::timerEvent(QTimerEvent *){
         for(int i = 1; i < 49; i++){
@@ -36,10 +37,10 @@ namespace gui{
         }
         update();
     }
-    void grid::start(int interval){
+    void grid::start(){
         if(!timerActive){
             if(isEnabled()) setEnabled(false);
-            timerID = startTimer(interval);
+            timerID = startTimer(timerInterval);
             timerActive = true;
         }
     }
@@ -57,5 +58,8 @@ namespace gui{
                 cell[i][j]->update();
             }
         }
+    }
+    void grid::setInterval(int interval){
+        timerInterval = interval;
     }
 }
