@@ -12,7 +12,7 @@ namespace gui{
     {
     public:
         grid();
-        void start();
+        void start(int interval);
         void pause();
         void clear();
     protected:

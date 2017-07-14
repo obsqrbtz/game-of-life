@@ -36,10 +36,10 @@ namespace gui{
         }
         update();
     }
-    void grid::start(){
+    void grid::start(int interval){
         if(!timerActive){
             if(isEnabled()) setEnabled(false);
-            timerID = startTimer(100);
+            timerID = startTimer(interval);
             timerActive = true;
         }
     }

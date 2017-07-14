@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include <QLineEdit>
 #include "grid_qt.h"
 
 class MainWindow : public QWidget
@@ -15,6 +16,8 @@ private:
     QPushButton *startbtn;
     QPushButton *pausebtn;
     QPushButton *clearbtn;
+    QPushButton *setIntervalbtn;
+    QLineEdit *setInterval;
 private slots:
     void handleStartButton();
     void handlePauseButton();
