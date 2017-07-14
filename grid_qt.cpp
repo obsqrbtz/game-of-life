@@ -7,6 +7,7 @@ namespace gui{
         for (int y = 0; y <= 490; y+=10){
             for(int x = 0; x <= 490; x+=10){
                 cell[i][j] = new Cell;
+                if (i == 0 || i == 49 || j == 49 || j == 0) cell[i][j]->border = true;
                 cell[i][j]->setCoordinates(x,y);
                 scene->addItem(cell[i][j]);
                 i++;
@@ -37,17 +38,19 @@ namespace gui{
     }
     void grid::start(){
         if(!timerActive){
+            if(isEnabled()) setEnabled(false);
             timerID = startTimer(100);
             timerActive = true;
         }
     }
     void grid::pause(){
         killTimer(timerID);
+        if(!isEnabled()) setEnabled(true);
         timerActive = false;
     }
     void grid::clear(){
-        for(int i = 1; i < 49; i++){
-            for(int j = 1; j < 49; j++){
+        for(int i = 0; i < 49; i++){
+            for(int j = 0; j < 49; j++){
                 pause();
                 cell[i][j]->alive = false;
                 cell[i][j]->wereAlive = false;

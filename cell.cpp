@@ -20,7 +20,14 @@ QRectF Cell::boundingRect() const{
 void Cell::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     QRectF rect = boundingRect();
-    if(alive)
+    if(border){
+        QPen pen(Qt::gray, 1);
+        QBrush brush(Qt::darkGray);
+        painter->setPen(pen);
+        painter->setBrush(brush);
+        painter->drawRect(rect);
+    }
+    if(alive && !border)
     {
         QPen pen(Qt::gray, 1);
         QBrush brush(Qt::red);
