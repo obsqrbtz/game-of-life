@@ -20,11 +20,13 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     setInterval->setText("100");
     pausebtn->setEnabled(false);
     clearbtn->setEnabled(false);
+    generation = new QLabel;
     connect(startbtn, SIGNAL(clicked()), this, SLOT(handleStartButton()));
     connect(pausebtn, SIGNAL(clicked()), this, SLOT(handlePauseButton()));
     connect(clearbtn, SIGNAL(clicked()), this, SLOT(handleClearButton()));
     connect(setIntervalbtn, SIGNAL(clicked()), this, SLOT(handleSetIntervalButton()));
     connect(setInterval, SIGNAL(returnPressed()), this, SLOT(handleSetIntervalButton()));
+    connect(grid, SIGNAL(generationChanged()), this, SLOT(updateGenerationLabel()));
     buttons->addWidget(startbtn);
     buttons->addWidget(pausebtn);
     buttons->addWidget(clearbtn);
@@ -33,6 +35,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     setIntervalLayout->addWidget(setInterval);
     sidebar->addLayout(setIntervalLayout);
     sidebar->addLayout(buttons);
+    sidebar->addWidget(generation);
+    generation->setText("Generation: 1");
     sidebar->setAlignment(Qt::AlignTop);
     layout->addLayout(mainarea);
     layout->addLayout(sidebar);
@@ -51,6 +55,7 @@ void MainWindow::handlePauseButton(){
     setIntervalbtn->setEnabled(true);
     setInterval->setEnabled(true);
     startbtn->setEnabled(true);
+    pausebtn->setEnabled(false);
     if(!clearbtn->isEnabled()) clearbtn->setEnabled(true);
 }
 void MainWindow::handleClearButton(){
@@ -62,4 +67,8 @@ void MainWindow::handleClearButton(){
 }
 void MainWindow::handleSetIntervalButton(){
     grid->setInterval(setInterval->text().toInt());
+}
+void MainWindow::updateGenerationLabel(){
+    generation->setText("Generation: "+grid->gridGeneration());
+    generation->update();
 }

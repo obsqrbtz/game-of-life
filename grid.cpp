@@ -3,8 +3,8 @@
 namespace game {
     grid grid::calculateNewState(grid tGrid){
         grid nGrid = tGrid;
-        for (int i = 1; i < 49; i++){
-            for(int j = 1; j < 49; j++){
+        for (int i = 1; i < 99; i++){
+            for(int j = 1; j < 99; j++){
                 int neighbors = 0;
                 for(int in = i - 1; in <= i + 1; in++){
                     for(int jn = j - 1; jn <= j + 1; jn++){

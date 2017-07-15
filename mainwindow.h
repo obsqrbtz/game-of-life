@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QLabel>
 #include "grid_qt.h"
 
 class MainWindow : public QWidget
@@ -18,11 +19,13 @@ private:
     QPushButton *clearbtn;
     QPushButton *setIntervalbtn;
     QLineEdit *setInterval;
+    QLabel *generation;
 private slots:
     void handleStartButton();
     void handlePauseButton();
     void handleClearButton();
     void handleSetIntervalButton();
+    void updateGenerationLabel();
 };
 
 #endif // MAINWINDOW_H

@@ -5,7 +5,7 @@ namespace game {
     class grid
     {
     public:
-         bool cell[50][50];
+         bool cell[100][100];
          grid calculateNewState(grid tGrid);
     };
 }

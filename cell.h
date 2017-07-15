@@ -5,8 +5,6 @@
 #include <QGraphicsItem>
 #include <QObject>
 
-#define RECT_SIZE 10
-
 class Cell :public QGraphicsItem, public QObject
 {
 public:
