@@ -17,14 +17,13 @@ private:
     QPushButton *startbtn;
     QPushButton *pausebtn;
     QPushButton *clearbtn;
-    QPushButton *setIntervalbtn;
     QLineEdit *setInterval;
     QLabel *generation;
 private slots:
     void handleStartButton();
     void handlePauseButton();
     void handleClearButton();
-    void handleSetIntervalButton();
+    void handleSetIntervalLineEdit();
     void updateGenerationLabel();
 };
 
