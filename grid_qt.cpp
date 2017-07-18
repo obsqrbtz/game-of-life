@@ -1,4 +1,9 @@
 #include "grid_qt.h"
+/*
+ * ToDo
+ * Create gui::grid class destructor
+ *
+ */
 namespace gui{
     grid::grid(int cellSizeNew, int widthNew, int heightNew)
     {
@@ -9,6 +14,8 @@ namespace gui{
         height = heightNew;
         iMax = width / cellSize - 1;
         jMax = height / cellSize - 1;
+        cell = new Cell **[iMax + 1];
+        for (i = 0; i <= iMax; i++) cell[i] = new Cell *[jMax + 1];
         i = 0;
         j = 0;
         for (int y = 0; y <= height - cellSize; y+=cellSize){

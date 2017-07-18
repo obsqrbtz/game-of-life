@@ -3,7 +3,7 @@
 
 #include "cell.h"
 #include "grid.h"
-#include <vector>
+#include <memory>
 #include <QPainter>
 #include <QGraphicsView>
 #include <QVBoxLayout>
@@ -22,8 +22,8 @@ namespace gui{
     protected:
         void timerEvent(QTimerEvent*);
     private:
-        Cell *cell[100][100];
-//        std::vector<std::vector<Cell*>> cell;
+//        Cell *cell[100][100];
+        Cell ***cell;
         game::grid gGrid;
         int timerID;
         int timerInterval;
