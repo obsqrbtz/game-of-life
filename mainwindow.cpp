@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     QHBoxLayout *setIntervalLayout = new QHBoxLayout;
     QHBoxLayout *buttons = new QHBoxLayout;
     QLabel *refreshLabel = new QLabel;
-    grid = new gui::grid;
+    grid = new gui::grid(4,400,400);
     startbtn = new QPushButton;
     startbtn->setText("Start");
     pausebtn = new QPushButton;
@@ -40,6 +40,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     layout->addLayout(mainarea);
     layout->addLayout(sidebar);
     setLayout(layout);
+    setWindowTitle("Conway's Game of Life");
 }
 void MainWindow::handleStartButton(){
     grid->start();
