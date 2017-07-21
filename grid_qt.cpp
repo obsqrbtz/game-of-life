@@ -1,9 +1,5 @@
 #include "grid_qt.h"
-/*
- * ToDo
- * Create gui::grid class destructor
- *
- */
+
 namespace gui{
     grid::grid(int cellSizeNew, int widthNew, int heightNew)
     {
@@ -20,9 +16,9 @@ namespace gui{
         j = 0;
         for (int y = 0; y <= height - cellSize; y+=cellSize){
             for(int x = 0; x <= width - cellSize; x+=cellSize){
-                cell[i][j] = new Cell;
+                cell[i][j] = new Cell(x,y,cellSize);
                 if (i == 0 || i == iMax || j == jMax || j == 0) cell[i][j]->border = true;
-                cell[i][j]->setCoordinates(x,y);
+                //cell[i][j]->setCoordinates(x,y);
                 scene->addItem(cell[i][j]);
                 j++;
             }
@@ -35,19 +31,27 @@ namespace gui{
         timerActive = false;
         timerInterval = 100;
         generation = 1;
+        gGrid = new game::grid(iMax, jMax);
     }
+    grid::~grid(){
+        for(int i = 0; i <= iMax; i++) delete[] cell[i];
+        delete[] cell;
+        delete gGrid;
+    }
+
     void grid::timerEvent(QTimerEvent *){
+        game::grid state(iMax, jMax);
         for(int i = 1; i < iMax; i++){
             for(int j = 1; j < jMax; j++){
-                gGrid.cell[i][j] = cell[i][j]->alive;
+                gGrid->setStatus(i,j,cell[i][j]->alive);
             }
         }
-        game::grid state = gGrid.calculateNewState(gGrid);
+        state = gGrid->calculateNewState(*gGrid);
         generation++;
         emit generationChanged();
         for (int i = 1; i < iMax; i++){
             for(int j = 1; j < jMax; j++){
-                cell[i][j]->alive = state.cell[i][j];
+                cell[i][j]->alive = state.getCell(i,j);
                 if(cell[i][j]->alive && !cell[i][j]->wereAlive) cell[i][j]->wereAlive = true;
                 cell[i][j]->update();
             }

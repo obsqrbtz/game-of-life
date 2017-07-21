@@ -12,13 +12,20 @@ class MainWindow : public QWidget
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
 private:
     gui::grid *grid;
+    QHBoxLayout *layout;
+    QVBoxLayout *mainarea;
+    QVBoxLayout *sidebar;
+    QHBoxLayout *setIntervalLayout;
+    QHBoxLayout *buttons;
     QPushButton *startbtn;
     QPushButton *pausebtn;
     QPushButton *clearbtn;
     QLineEdit *setInterval;
     QLabel *generation;
+    QLabel *refreshLabel;
 private slots:
     void handleStartButton();
     void handlePauseButton();

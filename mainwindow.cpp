@@ -2,13 +2,13 @@
 
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 {
-    QHBoxLayout *layout = new QHBoxLayout;
-    QVBoxLayout *mainarea = new QVBoxLayout;
-    QVBoxLayout *sidebar = new QVBoxLayout;
-    QHBoxLayout *setIntervalLayout = new QHBoxLayout;
-    QHBoxLayout *buttons = new QHBoxLayout;
-    QLabel *refreshLabel = new QLabel;
-    grid = new gui::grid(4,400,400);
+    layout = new QHBoxLayout;
+    mainarea = new QVBoxLayout;
+    sidebar = new QVBoxLayout;
+    setIntervalLayout = new QHBoxLayout;
+    buttons = new QHBoxLayout;
+    refreshLabel = new QLabel;
+    grid = new gui::grid(5,400,400);
     startbtn = new QPushButton;
     startbtn->setText("Start");
     pausebtn = new QPushButton;
@@ -42,6 +42,21 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     setLayout(layout);
     setWindowTitle("Conway's Game of Life");
 }
+MainWindow::~MainWindow(){
+    delete startbtn;
+    delete pausebtn;
+    delete clearbtn;
+    delete setInterval;
+    delete generation;
+    delete refreshLabel;
+    delete buttons;
+    delete setIntervalLayout;
+    delete sidebar;
+    delete mainarea;
+    delete layout;
+    delete grid;
+}
+
 void MainWindow::handleStartButton(){
     grid->start();
     setInterval->setEnabled(false);

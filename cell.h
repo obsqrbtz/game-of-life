@@ -8,8 +8,8 @@
 class Cell :public QGraphicsItem, public QObject
 {
 public:
-    Cell();
-    void setCoordinates(int x_new, int y_new);
+    Cell(int xNew, int yNew, int cellSizeNew);
+    //void setCoordinates(int x_new, int y_new);
     QRectF boundingRect() const;
     void paint(QPainter * painter,
                    const QStyleOptionGraphicsItem * option,
@@ -18,6 +18,7 @@ public:
     bool wereAlive;
     bool border;
     int x, y;
+    int cellSize;
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
 };

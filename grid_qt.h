@@ -3,7 +3,6 @@
 
 #include "cell.h"
 #include "grid.h"
-#include <memory>
 #include <QPainter>
 #include <QGraphicsView>
 #include <QVBoxLayout>
@@ -14,6 +13,7 @@ namespace gui{
         Q_OBJECT
     public:
         grid(int cellSizeNew, int widthNew, int heightNew);
+        ~grid();
         void start();
         void pause();
         void clear();
@@ -22,9 +22,8 @@ namespace gui{
     protected:
         void timerEvent(QTimerEvent*);
     private:
-//        Cell *cell[100][100];
         Cell ***cell;
-        game::grid gGrid;
+        game::grid *gGrid;
         int timerID;
         int timerInterval;
         int generation;

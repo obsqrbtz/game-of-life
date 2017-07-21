@@ -1,21 +1,22 @@
 #include "cell.h"
 
-Cell::Cell()
+Cell::Cell(int xNew, int yNew, int cellSizeNew)
 {
     alive = false;
     wereAlive = false;
     border = false;
-    x = 0;
-    y = 0;
+    x = xNew;
+    y = yNew;
+    cellSize = cellSizeNew;
 }
-
+/*
 void Cell::setCoordinates(int x_new, int y_new){
     x = x_new;
     y = y_new;
 }
-
+*/
 QRectF Cell::boundingRect() const{
-    return QRectF(x,y,4,4);
+    return QRectF(x,y,cellSize,cellSize);
 }
 void Cell::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
