@@ -8,8 +8,8 @@ namespace gui{
         cellSize = cellSizeNew;
         width = widthNew;
         height = heightNew;
-        iMax = width / cellSize - 1;
-        jMax = height / cellSize - 1;
+        iMax = height / cellSize - 1;
+        jMax = width / cellSize - 1;
         cell = new Cell **[iMax + 1];
         for (i = 0; i <= iMax; i++) cell[i] = new Cell *[jMax + 1];
         i = 0;
@@ -63,9 +63,11 @@ namespace gui{
         }
     }
     void grid::pause(){
-        killTimer(timerID);
+        if(timerActive){
+            killTimer(timerID);
+            timerActive = false;
+        }
         if(!isEnabled()) setEnabled(true);
-        timerActive = false;
     }
     void grid::clear(){
         for(int i = 0; i < iMax; i++){

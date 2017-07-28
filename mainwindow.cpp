@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     buttons = new QHBoxLayout;
     files = new QHBoxLayout;
     refreshLabel = new QLabel;
-    grid = new gui::grid(5,400,400);
+    grid = new gui::grid(5,400,325);
     startbtn = new QPushButton;
     startbtn->setText("Start");
     pausebtn = new QPushButton;
@@ -56,6 +56,8 @@ MainWindow::~MainWindow(){
     delete startbtn;
     delete pausebtn;
     delete clearbtn;
+    delete savebtn;
+    delete openbtn;
     delete setInterval;
     delete generation;
     delete refreshLabel;
@@ -88,6 +90,7 @@ void MainWindow::handleClearButton(){
     if(pausebtn->isEnabled()) pausebtn->setEnabled(false);
 }
 void MainWindow::handleSaveButton(){
+    handlePauseButton();
     QString filename = QFileDialog::getSaveFileName(this, tr("Save state"));
     if(filename.isEmpty()){
         return;
@@ -101,6 +104,7 @@ void MainWindow::handleSaveButton(){
     }
 }
 void MainWindow::handleOpenButton(){
+    handlePauseButton();
     QString filename = QFileDialog::getOpenFileName(this, tr("Open state"));
     if(filename.isEmpty()){
         return;
