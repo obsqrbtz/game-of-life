@@ -88,6 +88,16 @@ namespace gui{
         }
         gGrid->writeStateToFile(filename.toStdString());
     }
+    void grid::readStateFromFile(QString filename){
+        clear();
+        gGrid->readStateFromFile(filename.toStdString());
+        for(int i = 1; i < iMax; i++){
+            for(int j = 1; j < jMax; j++){
+                cell[i][j]->alive = gGrid->getCell(i,j);
+                cell[i][j]->update();
+            }
+        }
+    }
 
     QString grid::gridGeneration(){
         return QString::number(generation);

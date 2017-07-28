@@ -34,9 +34,22 @@ namespace game {
     }
     void grid::writeStateToFile(std::string filename){
         std::ofstream output(filename);
-        for(int i = 0; i < iMax; i++){
-            for(int j = 0; j < jMax; j++) output << cell[i][j];
+        for(int i = 0; i <= iMax; i++){
+            for(int j = 0; j <= jMax; j++) output << cell[i][j];
             output << std::endl;
         }
+        output.close();
+    }
+    void grid::readStateFromFile(std::string filename){
+        std::ifstream input(filename);
+        char temp;
+        for(int i = 0; i <= iMax; i++){
+            for(int j = 0; j <= jMax; j++){
+                input >> temp;
+                if(temp == '0') cell[i][j] = false;
+                if(temp == '1') cell[i][j] = true;
+            }
+        }
+        input.close();
     }
 }

@@ -17,6 +17,7 @@ namespace game {
         bool getCell(int i, int j);
         void setStatus(int i, int j, bool status);
         void writeStateToFile(std:: string filename);
+        void readStateFromFile(std::string filename);
     };
 }
 #endif // GRID_H

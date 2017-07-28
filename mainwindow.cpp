@@ -1,8 +1,5 @@
 #include "mainwindow.h"
 
-/*
- * Save & Open buttons are not working yet.
- */
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 {
     layout = new QHBoxLayout;
@@ -113,6 +110,7 @@ void MainWindow::handleOpenButton(){
             QMessageBox::information(this, tr("Unable to open file"), statefile.errorString());
             return;
         }
+        grid->readStateFromFile(filename);
     }
 }
 void MainWindow::handleSetIntervalLineEdit(){
