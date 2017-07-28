@@ -5,6 +5,10 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QLabel>
+#include <QFile>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QTextStream>
 #include "grid_qt.h"
 
 class MainWindow : public QWidget
@@ -20,9 +24,12 @@ private:
     QVBoxLayout *sidebar;
     QHBoxLayout *setIntervalLayout;
     QHBoxLayout *buttons;
+    QHBoxLayout *files;
     QPushButton *startbtn;
     QPushButton *pausebtn;
     QPushButton *clearbtn;
+    QPushButton *savebtn;
+    QPushButton *openbtn;
     QLineEdit *setInterval;
     QLabel *generation;
     QLabel *refreshLabel;
@@ -30,6 +37,8 @@ private slots:
     void handleStartButton();
     void handlePauseButton();
     void handleClearButton();
+    void handleSaveButton();
+    void handleOpenButton();
     void handleSetIntervalLineEdit();
     void updateGenerationLabel();
 };
