@@ -32,4 +32,11 @@ namespace game {
         }
     return nGrid;
     }
+    void grid::writeStateToFile(std::string filename){
+        std::ofstream output(filename);
+        for(int i = 0; i < iMax; i++){
+            for(int j = 0; j < jMax; j++) output << cell[i][j];
+            output << std::endl;
+        }
+    }
 }

@@ -1,6 +1,8 @@
 #ifndef GRID_H
 #define GRID_H
 #include <vector>
+#include <string>
+#include <fstream>
 
 namespace game {
     class grid
@@ -14,6 +16,7 @@ namespace game {
         grid calculateNewState(grid tGrid);
         bool getCell(int i, int j);
         void setStatus(int i, int j, bool status);
+        void writeStateToFile(std:: string filename);
     };
 }
 #endif // GRID_H

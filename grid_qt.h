@@ -18,6 +18,7 @@ namespace gui{
         void pause();
         void clear();
         void setInterval(int interval);
+        void writeStateToFile(QString filename);
         QString gridGeneration();
     protected:
         void timerEvent(QTimerEvent*);

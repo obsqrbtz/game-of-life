@@ -18,7 +18,6 @@ namespace gui{
             for(int x = 0; x <= width - cellSize; x+=cellSize){
                 cell[i][j] = new Cell(x,y,cellSize);
                 if (i == 0 || i == iMax || j == jMax || j == 0) cell[i][j]->border = true;
-                //cell[i][j]->setCoordinates(x,y);
                 scene->addItem(cell[i][j]);
                 j++;
             }
@@ -42,9 +41,7 @@ namespace gui{
     void grid::timerEvent(QTimerEvent *){
         game::grid state(iMax, jMax);
         for(int i = 1; i < iMax; i++){
-            for(int j = 1; j < jMax; j++){
-                gGrid->setStatus(i,j,cell[i][j]->alive);
-            }
+            for(int j = 1; j < jMax; j++) gGrid->setStatus(i,j,cell[i][j]->alive);
         }
         state = gGrid->calculateNewState(*gGrid);
         generation++;
@@ -85,6 +82,13 @@ namespace gui{
     void grid::setInterval(int interval){
         timerInterval = interval;
     }
+    void grid::writeStateToFile(QString filename){
+        for(int i = 1; i < iMax; i++){
+            for(int j = 1; j < jMax; j++) gGrid->setStatus(i,j,cell[i][j]->alive);
+        }
+        gGrid->writeStateToFile(filename.toStdString());
+    }
+
     QString grid::gridGeneration(){
         return QString::number(generation);
     }

@@ -100,12 +100,7 @@ void MainWindow::handleSaveButton(){
             QMessageBox::information(this, tr("Unable to open file"), statefile.errorString());
             return;
         }
-/*
- * ToDo:
- * Make separate class for state-file I/O, independent from QT
- */
-        QTextStream output(&statefile);
-        output << "Test output";
+        grid->writeStateToFile(filename);
     }
 }
 void MainWindow::handleOpenButton(){

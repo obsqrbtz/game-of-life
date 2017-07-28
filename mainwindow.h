@@ -8,7 +8,6 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QTextStream>
 #include "grid_qt.h"
 
 class MainWindow : public QWidget
