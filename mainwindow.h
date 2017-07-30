@@ -5,7 +5,6 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QLabel>
-#include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
 #include "grid_qt.h"

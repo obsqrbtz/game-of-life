@@ -91,29 +91,28 @@ void MainWindow::handleClearButton(){
 }
 void MainWindow::handleSaveButton(){
     handlePauseButton();
-    QString filename = QFileDialog::getSaveFileName(this, tr("Save state"));
+    QString filename = QFileDialog::getSaveFileName(this, "Save state", "*.grid");
     if(filename.isEmpty()){
         return;
     }else{
-        QFile statefile(filename);
-        if(!statefile.open(QIODevice::WriteOnly)){
-            QMessageBox::information(this, tr("Unable to open file"), statefile.errorString());
-            return;
+        if(filename.size() > 5){
+            QString filenameEnd;
+            for(int i = 5; i >= 1; i--){
+                filenameEnd = filenameEnd + filename[filename.size() - i];
+            }
+            if(filenameEnd != ".grid") filename = filename + ".grid";
+        }else{
+            filename = filename + ".grid";
         }
         grid->writeStateToFile(filename);
     }
 }
 void MainWindow::handleOpenButton(){
     handlePauseButton();
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open state"));
+    QString filename = QFileDialog::getOpenFileName(this, "Open state", "*.grid");
     if(filename.isEmpty()){
         return;
     }else{
-        QFile statefile(filename);
-        if(!statefile.open(QIODevice::ReadOnly)){
-            QMessageBox::information(this, tr("Unable to open file"), statefile.errorString());
-            return;
-        }
         grid->readStateFromFile(filename);
     }
 }
@@ -121,6 +120,6 @@ void MainWindow::handleSetIntervalLineEdit(){
     grid->setInterval(setInterval->text().toInt());
 }
 void MainWindow::updateGenerationLabel(){
-    generation->setText("Generation: "+grid->gridGeneration());
+    generation->setText("Generation: " + grid->gridGeneration());
     generation->update();
 }
