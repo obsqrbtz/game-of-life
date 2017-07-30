@@ -95,7 +95,7 @@ void MainWindow::handleSaveButton(){
     if(filename.isEmpty()){
         return;
     }else{
-        if(filename.size() > 5){
+        if(filename.size() >= 5){
             QString filenameEnd;
             for(int i = 5; i >= 1; i--){
                 filenameEnd = filenameEnd + filename[filename.size() - i];
