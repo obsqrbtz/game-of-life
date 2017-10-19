@@ -36,7 +36,7 @@ namespace gui{
         int jMax;
         bool timerActive;
     signals:
-       generationChanged();
+       void generationChanged();
     };
 }
 #endif // GRID_QT_H
