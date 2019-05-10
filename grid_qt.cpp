@@ -17,7 +17,6 @@ namespace gui{
         for (int y = 0; y <= height - cellSize; y+=cellSize){
             for(int x = 0; x <= width - cellSize; x+=cellSize){
                 cell[i][j] = new Cell(x,y,cellSize);
-                if (i == 0 || i == iMax || j == jMax || j == 0) cell[i][j]->border = true;
                 scene->addItem(cell[i][j]);
                 j++;
             }
@@ -40,14 +39,14 @@ namespace gui{
 
     void grid::timerEvent(QTimerEvent *){
         game::grid state(iMax, jMax);
-        for(int i = 1; i < iMax; i++){
-            for(int j = 1; j < jMax; j++) gGrid->setStatus(i,j,cell[i][j]->alive);
+        for(int i = 0; i <= iMax; i++){
+            for(int j = 0; j <= jMax; j++) gGrid->setStatus(i,j,cell[i][j]->alive);
         }
         state = gGrid->calculateNewState(*gGrid);
         generation++;
         emit generationChanged();
-        for (int i = 1; i < iMax; i++){
-            for(int j = 1; j < jMax; j++){
+        for (int i = 0; i <= iMax; i++){
+            for(int j = 0; j <= jMax; j++){
                 cell[i][j]->alive = state.getCell(i,j);
                 if(cell[i][j]->alive && !cell[i][j]->wereAlive) cell[i][j]->wereAlive = true;
                 cell[i][j]->update();
@@ -70,8 +69,8 @@ namespace gui{
         if(!isEnabled()) setEnabled(true);
     }
     void grid::clear(){
-        for(int i = 0; i < iMax; i++){
-            for(int j = 0; j < jMax; j++){
+        for(int i = 0; i <= iMax; i++){
+            for(int j = 0; j <= jMax; j++){
                 generation = 1;
                 emit generationChanged();
                 pause();
@@ -85,16 +84,16 @@ namespace gui{
         timerInterval = interval;
     }
     void grid::writeStateToFile(QString filename){
-        for(int i = 1; i < iMax; i++){
-            for(int j = 1; j < jMax; j++) gGrid->setStatus(i,j,cell[i][j]->alive);
+        for(int i = 0; i <= iMax; i++){
+            for(int j = 0; j <= jMax; j++) gGrid->setStatus(i,j,cell[i][j]->alive);
         }
         gGrid->writeStateToFile(filename.toStdString());
     }
     void grid::readStateFromFile(QString filename){
         clear();
         gGrid->readStateFromFile(filename.toStdString());
-        for(int i = 1; i < iMax; i++){
-            for(int j = 1; j < jMax; j++){
+        for(int i = 0; i <= iMax; i++){
+            for(int j = 0; j <= jMax; j++){
                 cell[i][j]->alive = gGrid->getCell(i,j);
                 cell[i][j]->update();
             }

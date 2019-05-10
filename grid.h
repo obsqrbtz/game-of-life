@@ -13,6 +13,7 @@ namespace game {
         int jMax;
     public:
         grid(int iNew, int jNew);
+        int countNeighbors(int i, int j, grid tGrid);
         grid calculateNewState(grid tGrid);
         bool getCell(int i, int j);
         void setStatus(int i, int j, bool status);
